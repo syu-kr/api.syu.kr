@@ -35,7 +35,7 @@ export class V1Controller {
 
     if (!(semester in convertSemester)) {
       res.status(HttpStatus.NOT_FOUND).json({
-        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        statusCode: HttpStatus.NOT_FOUND,
         message: 'unknown semester.',
       })
       return
@@ -45,7 +45,7 @@ export class V1Controller {
 
     if (!fs.existsSync(dirPath)) {
       res.status(HttpStatus.NOT_FOUND).json({
-        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        statusCode: HttpStatus.NOT_FOUND,
         message: year + ' - ' + convertSemester[semester] + ' not found.',
       })
       return
