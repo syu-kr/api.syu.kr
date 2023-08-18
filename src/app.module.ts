@@ -12,7 +12,6 @@
  *
  */
 import { Module } from '@nestjs/common'
-
 import { V1Controller } from './undergraduate/controller'
 import { V1Service } from './undergraduate/service'
 
