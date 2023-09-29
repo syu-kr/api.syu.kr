@@ -19,8 +19,18 @@ import { V1Service } from './service'
 export class V1Controller {
   public constructor(private readonly Service: V1Service) {}
 
+  @Get('list')
+  public async getUndergraduateList(@Res() res: Response) {
+    return await this.Service.getUndergraduateList(res)
+  }
+
   @Get(':year/:semester/:id')
-  public getProduct(@Param('year') year: string, @Param('semester') semester: string, @Param('id') id: string, @Res() res: Response) {
-    return this.Service.getUndergraduate(year, semester, id, res)
+  public async getUndergraduate(
+    @Param('year') year: string,
+    @Param('semester') semester: string,
+    @Param('id') id: string,
+    @Res() res: Response,
+  ) {
+    return await this.Service.getUndergraduate(year, semester, id, res)
   }
 }
