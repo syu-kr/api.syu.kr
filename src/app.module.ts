@@ -15,8 +15,10 @@ import { HttpModule } from '@nestjs/axios'
 import { CacheModule } from '@nestjs/cache-manager'
 import { Module } from '@nestjs/common'
 import * as redisStore from 'cache-manager-ioredis'
-import { V1Controller } from './undergraduate/controller'
-import { V1Service } from './undergraduate/service'
+import { V1Controller as PVC } from './professor/controller'
+import { V1Service as PVS } from './professor/service'
+import { V1Controller as UVC } from './undergraduate/controller'
+import { V1Service as UVS } from './undergraduate/service'
 
 @Module({
   imports: [
@@ -31,7 +33,7 @@ import { V1Service } from './undergraduate/service'
       ttl: 60 * 60 * 6,
     }),
   ],
-  controllers: [V1Controller],
-  providers: [V1Service],
+  controllers: [PVC, UVC],
+  providers: [PVS, UVS],
 })
 export class AppModule {}
