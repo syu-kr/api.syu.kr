@@ -62,8 +62,8 @@ export class V1Service {
     }
 
     const rawGithub = this.githubURL + year + '/' + convertSemester[semester]
-    const undergraduateList = this.HttpService.get(rawGithub + '/학부(과).json')
-    let undergraduateName = ''
+    // const undergraduateList = this.HttpService.get(rawGithub + '/학부(과).json')
+    // let undergraduateName = ''
 
     const redisData = await this.cacheManager.get(year + ':' + semester + ':' + id)
 
@@ -75,15 +75,15 @@ export class V1Service {
       return
     }
 
-    await lastValueFrom(undergraduateList)
-      .then((response: AxiosResponse) => {
-        undergraduateName = response.data['api'].find((undergraduate: { [element: string]: string }) => undergraduate['식별번호'] == id)
-      })
-      .catch((error: AxiosError) => {
-        console.log(error.response.data)
-      })
+    // await lastValueFrom(undergraduateList)
+    //   .then((response: AxiosResponse) => {
+    //     undergraduateName = response.data['api'].find((undergraduate: { [element: string]: string }) => undergraduate['식별번호'] == id)
+    //   })
+    //   .catch((error: AxiosError) => {
+    //     console.log(error.response.data)
+    //   })
 
-    const undergraduate = this.HttpService.get(rawGithub + '/전체대학/' + undergraduateName['학부(과)'] + '.json')
+    const undergraduate = this.HttpService.get(rawGithub + '/전체대학/' + id + '.json')
     let undergraduateData = {}
 
     await lastValueFrom(undergraduate)
